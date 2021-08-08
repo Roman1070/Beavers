@@ -3,21 +3,20 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    public static bool isNear;
-    private Image bobrImage;
-    private Transform eButtonImage;
     [SerializeField] private Sprite[] bobrSprites;
     [SerializeField] private Slider healthSlider;
 
-    [SerializeField] private static GameObject InteractButton;
+    public static bool isNear;
+
+    [SerializeField] private Image bobrImage;
+    [SerializeField] private Transform eButtonImage;
+    [SerializeField] private GameObject interactButtonImage;
+
     private void Start()
     {
-        bobrImage = gameObject.transform.Find("BobrImage").GetComponent<Image>();
         bobrImage.sprite = bobrSprites[PlayerData.SelectedBobr-1];
-        eButtonImage = GameObject.Find("eButtonImage").transform;
 
-        InteractButton = GameObject.Find("InteractButtonImage");
-        InteractButton.gameObject.SetActive(false);
+        interactButtonImage.gameObject.SetActive(false);
     }
     private void Update() 
     {
@@ -25,8 +24,8 @@ public class UI : MonoBehaviour
         healthSlider.value = DataWriter.PlayerHealth;
     }
 
-    public static void SwitchInteractButton(bool setActive)
+    public void SwitchInteractButton(bool active)
     {
-        InteractButton.SetActive(setActive);
+        interactButtonImage.SetActive(active);
     }
 }

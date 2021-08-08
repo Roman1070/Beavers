@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class NewGame : MonoBehaviour
 {
-    private static InputField nameField;
+    private static InputField nameInputField;
     public static int SelectedBobrNumber { get; set; }
     private void Start()
     {
-        nameField = GetComponentInChildren<InputField>();
+        nameInputField = GetComponentInChildren<InputField>();
     }
     public void Continue()
     {
-        string text = nameField.text.Trim();
+        string text = nameInputField.text.Trim();
         if (text == "") ErrorEmptyName();
         else PlayerData.PlayerName = text;
 

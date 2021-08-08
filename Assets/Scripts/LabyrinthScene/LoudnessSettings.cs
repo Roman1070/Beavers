@@ -8,6 +8,7 @@ public class LoudnessSettings : MonoBehaviour
     private void Start()
     {
         AudioSource mainSource = GameObject.Find("MainThemePlayer").GetComponent<AudioSource>();
+
         MyFunctions.AddToEnd(ref sources, mainSource);
         slider.value = 1;
     }

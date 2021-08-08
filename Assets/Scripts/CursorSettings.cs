@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CursorSettings : MonoBehaviour
@@ -10,4 +8,3 @@ public class CursorSettings : MonoBehaviour
         Cursor.SetCursor(commonCursor, Vector2.zero, CursorMode.Auto);
     }
 }
- 

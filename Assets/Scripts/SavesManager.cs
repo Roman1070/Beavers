@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class SavesManager : MonoBehaviour
 {
+    private const string LABYRINTH_SCENE_NAME = "LabyrinthScene";
     private void Awake()
     {
         GetData.GetMainData();
 
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if (sceneName == "LabyrinthScene")
+        if (sceneName == LABYRINTH_SCENE_NAME)
         {
             GetData.GetCoordinates();
             GetData.GetChocolates();
@@ -22,7 +23,7 @@ public class SavesManager : MonoBehaviour
     public static void SaveAll()
     {
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if (sceneName == "LabyrinthScene")
+        if (sceneName == LABYRINTH_SCENE_NAME)
         {
             SaveData.SaveCoordinates();
             SaveData.SaveChocolates();

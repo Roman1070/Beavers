@@ -1,7 +1,6 @@
 using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
-    
     public static string PlayerName { get; set; }
     public static int SelectedBobr { get; set; }
     public static float CompletedDistance { get; set; }

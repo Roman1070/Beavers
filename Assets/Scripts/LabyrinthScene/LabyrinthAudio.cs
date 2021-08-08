@@ -4,7 +4,6 @@ public class LabyrinthAudio : MonoBehaviour
 {
     public static LabyrinthAudio Singleton { get; private set; }
 
-    [SerializeField] private AudioClip walking;
     [SerializeField] private AudioClip eatingChoc;
     [SerializeField] private AudioClip win;
     [SerializeField] private AudioClip lose;
@@ -17,11 +16,7 @@ public class LabyrinthAudio : MonoBehaviour
     {
         Singleton = this;
     }
-    private void Start()
-    {
-        mainSource = GetComponent<AudioSource>();
-        additionalSource = GameObject.Find("additionalSource").GetComponent<AudioSource>();
-    }
+
     private void Update()
     {
         if (mainSource)
@@ -32,8 +27,6 @@ public class LabyrinthAudio : MonoBehaviour
             }
             else mainSource.Stop();
         }
-
-
     }
     public void PlayChocCollected()
     {
@@ -45,6 +38,6 @@ public class LabyrinthAudio : MonoBehaviour
     }
     public void PlayLose()
     {
-        additionalSource.PlayOneShot(win);
+        additionalSource.PlayOneShot(lose);
     }
 }

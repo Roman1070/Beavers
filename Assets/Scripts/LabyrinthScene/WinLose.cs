@@ -1,57 +1,87 @@
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WinLose : MonoBehaviour
 {
-    public static WinLose Singleton { get; private set; }
 
-    private GameObject window;
-    private Image resultTextImage;
-    private Image bobrImage;
+    [SerializeField] private GameObject window;
+    [SerializeField] private Image resultTextImage;
+    [SerializeField] private Image bobrImage;
     [SerializeField] private Sprite[] bobrSprites;
     [SerializeField] private Sprite[] resTextSprite;
     [SerializeField] private GameObject requestWindow;
-    
-    private void Awake(){
-        Singleton=this;
-    }
-    private void Start() {
 
-        window=GameObject.Find("Win/Lose");
-        resultTextImage=transform.GetChild(0).GetChild(1).GetComponent<Image>();
-        bobrImage=transform.GetChild(0).GetChild(0).GetComponent<Image>();
+    public static UnityAction win;
+
+    private int group=>PlayerData.Group;
+
+    private void Start() 
+    {
         window.SetActive(false);
         requestWindow.SetActive(false);
+
+        win += Win;
     }
-    private void Update() {
-        if(Input.anyKeyDown && window.activeInHierarchy) ShowRequest();
-    }
-    public void Lose()
+    private void Update() 
     {
-        ShowWindow();
-        LabyrinthAudio.Singleton.PlayLose();
-        resultTextImage.sprite=resTextSprite[1];
-        bobrImage.sprite=bobrSprites[1];
+        if(Input.anyKeyDown && window.activeInHierarchy) ShowRequest();
+
+        CheckWinLose();
     }
-    public void Win()
-    {   
-        ShowWindow();
+    private void Lose()
+    {
+        ShowWindow(0);
+        LabyrinthAudio.Singleton.PlayLose();
+    }
+    private void Win()
+    {
+        ShowWindow(1);
         LabyrinthAudio.Singleton.PlayWin();
-        resultTextImage.sprite=resTextSprite[0];
-        bobrImage.sprite=bobrSprites[0];
 
     }
-    private void ShowWindow()
+    private void ShowWindow(int res)
     {
         window.SetActive(true);
+        resultTextImage.sprite = resTextSprite[res];
+        bobrImage.sprite = bobrSprites[res];
+
         PlayerMovement.HasControls = false;
         FirebaseManager.PushData();
         SavesManager.Clear();
     }
 
-    private void ShowRequest(){
+    private void ShowRequest()
+    {
         Cursor.visible=true;
         Cursor.lockState=CursorLockMode.None;
         requestWindow.SetActive(true);
+    }
+    private void CheckWinLose()
+    {
+        float health = DataWriter.PlayerHealth;
+        float chocolatesCount = PlayerData.ChocolatesCount;
+        bool hasControls = PlayerMovement.HasControls;
+
+        if (health > 0)
+        {
+            if (hasControls)
+            {
+                if (group != 3) DataWriter.PlayerHealth -= 10 * Time.deltaTime;
+                else DataWriter.PlayerHealth -= 0.2f * Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (hasControls) Lose();
+        }
+
+        if (group == 2 && chocolatesCount == 10 && hasControls) Win();
+
+        if (group == 3)
+        {
+            if (health >= 99 && hasControls) Win();
+            if (chocolatesCount == 10 && health < 100 && hasControls) Lose();
+        }
     }
 }

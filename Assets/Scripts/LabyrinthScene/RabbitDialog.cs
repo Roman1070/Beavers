@@ -3,7 +3,9 @@ using UnityEngine;
 public class RabbitDialog : MonoBehaviour
 {
     [SerializeField] private GameObject text;
+    private UI ui => FindObjectOfType<UI>();
     private bool isInTrigger;
+
     private void Start()
     {
         HideReplic();
@@ -34,11 +36,11 @@ public class RabbitDialog : MonoBehaviour
     }
     private void ShowButton()
     {
-        UI.SwitchInteractButton(true);
+        ui.SwitchInteractButton(true);
     }
     private void HideButton()
     {
-        UI.SwitchInteractButton(false);
+        ui.SwitchInteractButton(false);
     }
     private void ShowReplic()
     {

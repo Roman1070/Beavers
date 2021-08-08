@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class BobrSelector : MonoBehaviour
 {
-    [SerializeField] private Image[] bobrImages;
     [SerializeField] private Sprite[] bobrSprites;
     [SerializeField] private Sprite[] selectedBobrSprites;
-    private void Start()
-    {
-        bobrImages = GetComponentsInChildren<Image>();
-    }
+    private Image[] bobrImages => GetComponentsInChildren<Image>();
+
     public void SelectBobr(int number)
     {
         NewGame.SelectedBobrNumber = number;

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Chocolate : MonoBehaviour
 {
-    private bool isNear;
     [SerializeField] private int number;
+
+    private bool isNear;
 
     private void Start()
     {

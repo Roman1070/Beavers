@@ -10,7 +10,7 @@ public class PausePanel : MonoBehaviour
     }
     public void Continue()
     {
-        Pause.Singleton.UnsetPause();
+        Pause.Singleton.TogglePause(false);
     }
     public void Quit()
     {
