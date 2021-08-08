@@ -29,16 +29,31 @@ public class WinLose : MonoBehaviour
 
         CheckWinLose();
     }
-    private void Lose()
+    private void CheckWinLose()
     {
-        ShowWindow(0);
-        LabyrinthAudio.Singleton.PlayLose();
+        float health = DataWriter.PlayerHealth;
+        float chocolatesCount = PlayerData.ChocolatesCount;
+        bool hasControls = PlayerMovement.HasControls;
+
+        if (health <= 0) Lose();
+
+        if (group == 2 && chocolatesCount == 10 && hasControls) Win();
+
+        if (group == 3)
+        {
+            if (health >= 99 && hasControls) Win();
+            if (chocolatesCount == 10 && health < 100 && hasControls) Lose();
+        }
     }
     private void Win()
     {
         ShowWindow(1);
         LabyrinthAudio.Singleton.PlayWin();
-
+    }
+    private void Lose()
+    {
+        ShowWindow(0);
+        LabyrinthAudio.Singleton.PlayLose();
     }
     private void ShowWindow(int res)
     {
@@ -56,32 +71,5 @@ public class WinLose : MonoBehaviour
         Cursor.visible=true;
         Cursor.lockState=CursorLockMode.None;
         requestWindow.SetActive(true);
-    }
-    private void CheckWinLose()
-    {
-        float health = DataWriter.PlayerHealth;
-        float chocolatesCount = PlayerData.ChocolatesCount;
-        bool hasControls = PlayerMovement.HasControls;
-
-        if (health > 0)
-        {
-            if (hasControls)
-            {
-                if (group != 3) DataWriter.PlayerHealth -= 10 * Time.deltaTime;
-                else DataWriter.PlayerHealth -= 0.2f * Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (hasControls) Lose();
-        }
-
-        if (group == 2 && chocolatesCount == 10 && hasControls) Win();
-
-        if (group == 3)
-        {
-            if (health >= 99 && hasControls) Win();
-            if (chocolatesCount == 10 && health < 100 && hasControls) Lose();
-        }
     }
 }

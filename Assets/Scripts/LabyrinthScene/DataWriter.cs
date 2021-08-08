@@ -19,6 +19,15 @@ public class DataWriter : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerHealth > 0)
+        {
+            if (PlayerMovement.HasControls)
+            {
+                if (group != 3) PlayerHealth -= 0.4f * Time.deltaTime;
+                else PlayerHealth -= 0.2f * Time.deltaTime;
+            }
+        }
+
         WriteTimeSpent();
         WriteDistancePassed();
     }
