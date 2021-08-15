@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "176288076756",
-    "firebase_url": "https://beavers-65472-default-rtdb.firebaseio.com",
-    "project_id": "beavers-65472",
-    "storage_bucket": "beavers-65472.appspot.com"
+    "project_number": "1027725586617",
+    "firebase_url": "https://beavers-a02c6-default-rtdb.firebaseio.com",
+    "project_id": "beavers-a02c6",
+    "storage_bucket": "beavers-a02c6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:176288076756:android:d7fb9ed764767418a43c41",
+        "mobilesdk_app_id": "1:1027725586617:android:c82fd5713e5c969d0e6b68",
         "android_client_info": {
           "package_name": "com.WhiteCubeGames.Experiment"
         }
       },
       "oauth_client": [
         {
-          "client_id": "176288076756-hcc7cc37vg6b9ihuln1rnmvt3ue3mfn3.apps.googleusercontent.com",
+          "client_id": "1027725586617-hkpgjm60q4up2ac3njmjan6872silo1j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBzWq93V3HOAdMGK_TPRYQXTtNLcGnn8BE"
+          "current_key": "AIzaSyB1GQtBzHP3AID1tx_jOJu2TDW1emwXo9o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "176288076756-hcc7cc37vg6b9ihuln1rnmvt3ue3mfn3.apps.googleusercontent.com",
+              "client_id": "1027725586617-hkpgjm60q4up2ac3njmjan6872silo1j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

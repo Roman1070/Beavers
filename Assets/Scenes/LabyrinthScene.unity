@@ -2600,7 +2600,7 @@ GameObject:
   - component: {fileID: 526750058}
   - component: {fileID: 526750057}
   m_Layer: 5
-  m_Name: Collect
+  m_Name: Interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2622,8 +2622,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 362.39673, y: 0}
-  m_SizeDelta: {x: 488.7935, y: 150}
+  m_AnchoredPosition: {x: 360.705, y: 2.645}
+  m_SizeDelta: {x: 503.091, y: 194.711}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526750057
 MonoBehaviour:
@@ -2649,7 +2649,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 105
     m_Alignment: 4
@@ -2658,7 +2658,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Interact
+  m_Text: "\u0412\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C"
 --- !u!222 &526750058
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4924,7 +4924,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Loudness
+  m_Text: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
 --- !u!222 &867332163
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7937,7 +7937,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mouse Sensitivity
+  m_Text: "\u0427\u0443\u0432\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C
+    \u043C\u044B\u0448\u0438"
 --- !u!222 &1231585215
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13432,8 +13433,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6967428, y: 1.8028551, z: 1.8783321}
-  m_Center: {x: 0.11019068, y: 0.40142757, z: 0.43916655}
+  m_Size: {x: 1.6967428, y: 1.8028551, z: 1.526366}
+  m_Center: {x: 0.11019108, y: 0.40142757, z: 0.61514884}
 --- !u!23 &6647810564733193441
 MeshRenderer:
   m_ObjectHideFlags: 0

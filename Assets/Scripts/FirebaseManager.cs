@@ -1,6 +1,7 @@
 using Firebase.Database;
 using UnityEngine;
 using Firebase;
+
 public class FirebaseManager : MonoBehaviour
 {
     public static int[] Group { get => group; private set => group = value; }
