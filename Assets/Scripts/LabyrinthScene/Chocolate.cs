@@ -1,55 +1,20 @@
 using UnityEngine;
 
-public class Chocolate : MonoBehaviour
+public class Chocolate : BaseCollectable
 {
+    [SerializeField] private Tip _tip;
     [SerializeField] private int number;
-
-    private bool isNear;
 
     private void Start()
     {
-        if (DataWriter.ChocolateEaten[number]) Destroy(gameObject);
+        if (PlayerData.ChocolateCollected[number]) Destroy(gameObject);
     }
-    private void OnTriggerEnter(Collider other)
+    protected override void Collect()
     {
-        if (other.tag == "Player")
-        {
-            UI.isNear = true;
-            isNear = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            UI.isNear = false;
-            isNear = false;
-        }
-    }
-    private void Update()
-    {
-        transform.Rotate(Vector3.forward * 40 * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.E) && isNear)
-        {
-            Collect();
-        }
-    }
-    private void Collect()
-    {
-        int group = PlayerData.Group;
-
-        DataWriter.PlayerHealth += group == 3 ? 10 : 5;
-        if (DataWriter.PlayerHealth > 100) DataWriter.PlayerHealth = 100;
-
-        PlayerData.ChocolatesCount++;
-
-        UI.isNear = false;
-        DataWriter.ChocolateEaten[number] = true;
-
-        if (group != 1)
-            ChocolatesNavigator.Singleton.RefreshChocolateNav();
-
+        base.Collect();
         LabyrinthAudio.Singleton.PlayChocCollected();
-        Destroy(gameObject);
+        PlayerData.ChocolateCollected[number] = true;
+        if (PlayerData.Group != 1) ChocolatesNavigator.Singleton.RefreshChocolateNav();
+        if (PlayerData.TotalChocolatesCollected == 1) _tip.Show(string.Empty);
     }
 }

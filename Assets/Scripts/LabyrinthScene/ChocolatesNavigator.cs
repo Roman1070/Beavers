@@ -25,11 +25,11 @@ public class ChocolatesNavigator : MonoBehaviour
     }
     private void Update()
     {
-        chocsCollected = DataWriter.ChocolateEaten;
+        chocsCollected = PlayerData.ChocolateCollected;
     }
     public void RefreshChocolateNav()
     {
-        chocsCollected = DataWriter.ChocolateEaten;
+        chocsCollected = PlayerData.ChocolateCollected;
 
         for (int i = 0; i < 4; i++)
         {

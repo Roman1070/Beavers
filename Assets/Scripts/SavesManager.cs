@@ -12,37 +12,47 @@ public class SavesManager : MonoBehaviour
         if (sceneName == LABYRINTH_SCENE_NAME)
         {
             GetData.GetCoordinates();
-            GetData.GetChocolates();
+            PlayerData.ChocolateCollected = GetData.GetBoolArray(10,"chocs.txt");
+            ChocolatesNavigator.Singleton.RefreshChocolateNav();
+            PlayerData.TrophiesCollected = GetData.GetBoolArray(4, "trophies.txt");
+            PlayerData.TimeSpentInArea = GetData.GetTime();
         }
     }
 
-
-    private void OnApplicationQuit(){
+    private void OnApplicationQuit()
+    {
         SaveAll();
     }
+
     public static void SaveAll()
     {
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         if (sceneName == LABYRINTH_SCENE_NAME)
         {
             SaveData.SaveCoordinates();
-            SaveData.SaveChocolates();
+            SaveData.SaveArray(PlayerData.ChocolateCollected,"chocs.txt");
+            SaveData.SaveArray(PlayerData.TrophiesCollected, "trophies.txt");
+            SaveData.SaveArray(PlayerData.TimeSpentInArea, "time.txt");
         }
         SaveData.SaveGroup();
         SaveData.SaveMainData();
     }
+
     public static void Clear()
     {
         string origin = Application.persistentDataPath;
-        string[] paths = new string[] { origin + "/save.txt", origin + "/choc.txt", origin + "/coords.txt" };
+        string[] paths = new string[0];
+
+        MyFunctions.AddToEnd(ref paths, origin + "/save.txt");
+        MyFunctions.AddToEnd(ref paths, origin + "/choc.txt");
+        MyFunctions.AddToEnd(ref paths, origin + "/coords.txt");
+        MyFunctions.AddToEnd(ref paths, origin + "/trophies.txt");
+        MyFunctions.AddToEnd(ref paths, origin + "/time.txt");
+
         foreach (string path in paths)
         {
             if (File.Exists(path)) File.Delete(path);
         }
-        PlayerData.PlayerName = "";
-        PlayerData.ChocolatesCount = 0;
-        PlayerData.CompletedDistance = 0;
-        PlayerData.SelectedBobr = 0;
-        PlayerData.TimeSpent = 0;
+        PlayerData.ResetValues();
     }
 }

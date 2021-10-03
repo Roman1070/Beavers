@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class WinLose : MonoBehaviour
 {
-
     [SerializeField] private GameObject window;
     [SerializeField] private Image resultTextImage;
     [SerializeField] private Image bobrImage;
@@ -32,7 +31,7 @@ public class WinLose : MonoBehaviour
     private void CheckWinLose()
     {
         float health = DataWriter.PlayerHealth;
-        float chocolatesCount = PlayerData.ChocolatesCount;
+        int chocolatesCount = PlayerData.TotalChocolatesCollected;
         bool hasControls = PlayerMovement.HasControls;
 
         if (health <= 0) Lose();

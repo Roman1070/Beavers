@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
@@ -35,7 +33,7 @@ public class Pause : MonoBehaviour
         PausePanel.gameObject.SetActive(set);
         Cursor.SetCursor(cur, Vector2.zero, CursorMode.Auto);
         Cursor.visible = set;
-        if(set)Cursor.lockState = CursorLockMode.None;
+        if (set) Cursor.lockState = CursorLockMode.None;
         IsPaused = set;
     }
 }

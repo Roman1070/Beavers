@@ -6,9 +6,8 @@ public class FirebaseManager : MonoBehaviour
 {
     public static int[] Group { get => group; private set => group = value; }
 
-    private static int[] group;
-
     private static DatabaseReference reference;
+    private static int[] group;
 
     private void Awake()
     {
@@ -51,9 +50,11 @@ public class FirebaseManager : MonoBehaviour
         int bobrSel = PlayerData.SelectedBobr;
         float timeSpent = PlayerData.TimeSpent;
         float compDist = PlayerData.CompletedDistance;
-        int cc = PlayerData.ChocolatesCount;
+        int cc = PlayerData.TotalChocolatesCollected;
+        int chocolatesEaten = PlayerData.ChocolatesEaten;
+        int trCount = PlayerData.TrophiesCollectedCount;
 
-        Profile user = new Profile(name, PlayerData.Group, bobrSel, timeSpent, compDist, cc);
+        Profile user = new Profile(name, PlayerData.Group, bobrSel, timeSpent, compDist, cc,chocolatesEaten,trCount);
 
         string json = JsonUtility.ToJson(user);
         var p = reference.Push();
@@ -72,7 +73,7 @@ public class FirebaseManager : MonoBehaviour
             reference.Child("group/3/").SetValueAsync(int.Parse(arrJSON[2]));
         }
 
-        SaveData.MarkThatGroupIsAlreadyWritten();
+        SaveData.MarkGroup();
 
     }
 }
@@ -86,19 +87,24 @@ public class Group
 }
 public class Profile
 {
-    public string name;
-    public int group;
-    public int selectedBobr;
-    public float timeSpent;
-    public float completedDistance;
-    public int chocolatesCount;
-    public Profile(string name, int group, int selectedBobr, float timeSpent, float completedDistance, int chocolatesCount)
+    public string _name;
+    public int _group;
+    public int _selectedBobr;
+    public float _timeSpent;
+    public float _completedDistance;
+    public int _chocolatesCount;
+    public int _chocolatesEaten;
+    public int _trophiesCount;
+
+    public Profile(string name, int group, int selectedBobr, float timeSpent, float completedDistance, int chocolatesCount,int chocolatesEaten,int trCount)
     {
-        this.name = name;
-        this.group = group;
-        this.selectedBobr = selectedBobr;
-        this.timeSpent = timeSpent;
-        this.completedDistance = completedDistance;
-        this.chocolatesCount = chocolatesCount;
+        _name = name;
+        _group = group;
+        _selectedBobr = selectedBobr;
+        _timeSpent = timeSpent;
+        _completedDistance = completedDistance;
+        _chocolatesCount = chocolatesCount;
+        _chocolatesEaten = chocolatesEaten;
+        _trophiesCount = trCount;
     }
 }

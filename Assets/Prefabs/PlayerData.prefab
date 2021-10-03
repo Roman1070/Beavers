@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df065be8b990b034bbbebfda824fd823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  selectedBobr: 0
-  hasProgress: 0
 --- !u!114 &4272600193572118487
 MonoBehaviour:
   m_ObjectHideFlags: 0

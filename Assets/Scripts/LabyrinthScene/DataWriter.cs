@@ -3,7 +3,6 @@ using UnityEngine;
 public class DataWriter : MonoBehaviour
 {
     public static float PlayerHealth { get; set; }
-    public static bool[] ChocolateEaten { get; set; }
 
     private Vector3 playerPos => FindObjectOfType<PlayerMovement>().transform.position;
     private Vector3 prevPos = new Vector3();
@@ -14,7 +13,6 @@ public class DataWriter : MonoBehaviour
     private void Start()
     {
         prevPos = pos = playerPos;
-        PlayerHealth = group == 3 ? 50 : 100;
     }
 
     private void Update()
@@ -28,17 +26,9 @@ public class DataWriter : MonoBehaviour
             }
         }
 
-        WriteTimeSpent();
         WriteDistancePassed();
     }
 
-    private void WriteTimeSpent()
-    {
-        if (!Pause.IsPaused)
-        {
-            PlayerData.TimeSpent += Time.deltaTime;
-        }
-    }
     private void WriteDistancePassed()
     {
         pos = playerPos;

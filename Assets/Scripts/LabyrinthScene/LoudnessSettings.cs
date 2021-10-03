@@ -7,9 +7,16 @@ public class LoudnessSettings : MonoBehaviour
     [SerializeField] AudioSource[] sources;
     private void Start()
     {
-        AudioSource mainSource = GameObject.Find("MainThemePlayer").GetComponent<AudioSource>();
+        try 
+        { 
+            AudioSource mainSource = GameObject.Find("MainThemePlayer").GetComponent<AudioSource>();
+            MyFunctions.AddToEnd(ref sources, mainSource);
+        }
+        catch
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
 
-        MyFunctions.AddToEnd(ref sources, mainSource);
         slider.value = 1;
     }
     private void Update()

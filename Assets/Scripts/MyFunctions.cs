@@ -1,4 +1,4 @@
-﻿class MyFunctions
+﻿public static class MyFunctions
 {
     public static void AddToEnd<T>(ref T[] input, T value)
     {

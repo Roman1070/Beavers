@@ -3,18 +3,30 @@ using UnityEngine;
 
 public class GetData : MonoBehaviour
 {
-    public static void GetChocolates()
+    public static bool[] GetBoolArray(int length,string fileName)
     {
-        bool[] arrBool = new bool[10];
-        if (File.Exists(Application.persistentDataPath+"/choc.txt"))
+        bool[] arrBool = new bool[length];
+        if (File.Exists(Application.persistentDataPath + $"/{fileName}"))
         {
-            string[] arr = Get("choc.txt");
+            string[] arr = Get(fileName);
             for (int i = 0; i < arrBool.Length; i++) arrBool[i] = arr[i] == "True";
         }
-        
-        DataWriter.ChocolateEaten = arrBool;
-        ChocolatesNavigator.Singleton.RefreshChocolateNav();
+
+        return arrBool;
     }
+
+    public static float[] GetTime()
+    {
+        float[] arrFloat = new float[4];
+        if (File.Exists(Application.persistentDataPath + $"/time.txt"))
+        {
+            string[] arr = Get("time.txt");
+            for (int i = 0; i < arrFloat.Length; i++) arrFloat[i] = float.Parse(arr[i]);
+        }
+
+        return arrFloat;
+    }
+
     public static void GetCoordinates()
     {
         float x = 132;
@@ -40,10 +52,11 @@ public class GetData : MonoBehaviour
             PlayerData.PlayerName = arr[0];
             PlayerData.SelectedBobr = int.Parse(arr[1]);
             PlayerData.CompletedDistance = float.Parse(arr[2]);
-            PlayerData.TimeSpent = float.Parse(arr[3]);
-            PlayerData.Group = int.Parse(arr[4]);
-            PlayerData.ChocolatesCount = int.Parse(arr[5]);
+            PlayerData.Group = int.Parse(arr[3]);
+            PlayerData.ChocolatesEaten = int.Parse(arr[4]);
+            DataWriter.PlayerHealth = float.Parse(arr[5]);
         }
+        else DataWriter.PlayerHealth = PlayerData.Group == 3 ? 50 : 100;
     }
     private static string[] Get(string fileName)
     {

@@ -5,12 +5,11 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private Sprite[] bobrSprites;
     [SerializeField] private Slider healthSlider;
-
-    public static bool isNear;
-
     [SerializeField] private Image bobrImage;
     [SerializeField] private Transform eButtonImage;
     [SerializeField] private GameObject interactButtonImage;
+
+    public static bool isNear;
 
     private void Start()
     {

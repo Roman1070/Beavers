@@ -28,7 +28,7 @@ public class RabbitDialog : MonoBehaviour
     }
     private void Update()
     {
-        if (isInTrigger && Input.GetKeyDown(KeyCode.E))
+        if (isInTrigger && Input.GetMouseButtonDown(0))
         {
             ShowReplic();
             HideButton();
