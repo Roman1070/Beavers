@@ -1,51 +1,34 @@
 using UnityEngine;
 
-public class RabbitDialog : MonoBehaviour
+public class RabbitDialog : BaseInteractable
 {
     [SerializeField] private GameObject text;
-    private UI ui => FindObjectOfType<UI>();
-    private bool isInTrigger;
 
     private void Start()
     {
         HideReplic();
     }
-    private void OnTriggerEnter(Collider other)
+
+    protected override void OnTriggerEnter(Collider other)
     {
-        isInTrigger = true;
-        if (other.tag == "Player"&&!text.activeInHierarchy)
+        base.OnTriggerEnter(other);
+        if (other.tag == "Player" && !text.activeInHierarchy)
         {
             ShowButton();
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    protected override void Interact()
     {
-        isInTrigger = false;
-        if (other.tag == "Player")
-        {
-            HideButton();
-        }
+        base.Interact();
+        ShowReplic();
     }
-    private void Update()
-    {
-        if (isInTrigger && Input.GetMouseButtonDown(0))
-        {
-            ShowReplic();
-            HideButton();
-        }
-    }
-    private void ShowButton()
-    {
-        ui.SwitchInteractButton(true);
-    }
-    private void HideButton()
-    {
-        ui.SwitchInteractButton(false);
-    }
+
     private void ShowReplic()
     {
         text.SetActive(true);
     }
+
     private void HideReplic()
     {
         text.SetActive(false);

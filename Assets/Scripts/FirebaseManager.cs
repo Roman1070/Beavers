@@ -48,13 +48,15 @@ public class FirebaseManager : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         string name = PlayerData.PlayerName;
         int bobrSel = PlayerData.SelectedBobr;
-        float timeSpent = PlayerData.TimeSpent;
+        float[] timeSpent = PlayerData.TimeSpentInArea;
         float compDist = PlayerData.CompletedDistance;
         int cc = PlayerData.TotalChocolatesCollected;
         int chocolatesEaten = PlayerData.ChocolatesEaten;
         int trCount = PlayerData.TrophiesCollectedCount;
+        bool gf = PlayerData.GalleryFound;
 
-        Profile user = new Profile(name, PlayerData.Group, bobrSel, timeSpent, compDist, cc,chocolatesEaten,trCount);
+        Profile user = new Profile(name, PlayerData.Group, bobrSel,
+            timeSpent[0],timeSpent[1],timeSpent[2],timeSpent[3], compDist, cc,chocolatesEaten,trCount,gf);
 
         string json = JsonUtility.ToJson(user);
         var p = reference.Push();
@@ -90,21 +92,33 @@ public class Profile
     public string _name;
     public int _group;
     public int _selectedBobr;
-    public float _timeSpent;
+    public float _totalTime;
+    public float _timeRed;
+    public float _timeYellow;
+    public float _timeGreen;
+    public float _timeGallery;
     public float _completedDistance;
     public int _chocolatesCount;
     public int _chocolatesEaten;
     public int _trophiesCount;
+    public bool _galleryFound;
 
-    public Profile(string name, int group, int selectedBobr, float timeSpent, float completedDistance, int chocolatesCount,int chocolatesEaten,int trCount)
+    public Profile(string name, int group, int selectedBobr, 
+        float timeR,float timeY, float timeGreen, float timeGallery, float completedDistance, int chocolatesCount,
+        int chocolatesEaten,int trCount,bool galleryFound)
     {
         _name = name;
         _group = group;
         _selectedBobr = selectedBobr;
-        _timeSpent = timeSpent;
+        _timeRed = timeR;
+        _timeYellow = timeY;
+        _timeGreen = timeGreen;
+        _timeGallery = timeGallery;
+        _totalTime = timeR + timeY + timeGallery + timeGallery;
         _completedDistance = completedDistance;
         _chocolatesCount = chocolatesCount;
         _chocolatesEaten = chocolatesEaten;
         _trophiesCount = trCount;
+        _galleryFound = galleryFound;
     }
 }

@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEngine;
-using System;
 
 public class SaveData : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class SaveData : MonoBehaviour
 
     }
 
-    public static void SaveArray<T>(T[] array,string fileName)
+    public static void SaveArray<T>(T[] array, string fileName)
     {
         if (array.Length > 0)
         {
@@ -53,8 +52,10 @@ public class SaveData : MonoBehaviour
             string group = PlayerData.Group.ToString();
             string chocsEaten = PlayerData.ChocolatesEaten.ToString();
             string health = DataWriter.PlayerHealth.ToString();
+            string galleryFound = PlayerData.GalleryFound.ToString();
+            string stage = PlayerData.CurrentStageIndex.ToString();
 
-            Save("save.txt", name, bobr, dist, group, chocsEaten, health);
+            Save("save.txt", name, bobr, dist, group, chocsEaten, health, galleryFound,stage);
         }
     }
 

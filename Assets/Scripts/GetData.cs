@@ -15,12 +15,12 @@ public class GetData : MonoBehaviour
         return arrBool;
     }
 
-    public static float[] GetTime()
+    public static float[] GetTime(string fileName,int size)
     {
-        float[] arrFloat = new float[4];
-        if (File.Exists(Application.persistentDataPath + $"/time.txt"))
+        float[] arrFloat = new float[size];
+        if (File.Exists(Application.persistentDataPath + $"/{fileName}"))
         {
-            string[] arr = Get("time.txt");
+            string[] arr = Get(fileName);
             for (int i = 0; i < arrFloat.Length; i++) arrFloat[i] = float.Parse(arr[i]);
         }
 
@@ -55,8 +55,9 @@ public class GetData : MonoBehaviour
             PlayerData.Group = int.Parse(arr[3]);
             PlayerData.ChocolatesEaten = int.Parse(arr[4]);
             DataWriter.PlayerHealth = float.Parse(arr[5]);
+            PlayerData.GalleryFound = bool.Parse(arr[6]);
+            PlayerData.CurrentStageIndex = int.Parse(arr[7]);
         }
-        else DataWriter.PlayerHealth = PlayerData.Group == 3 ? 50 : 100;
     }
     private static string[] Get(string fileName)
     {

@@ -12,7 +12,6 @@ public class Chocolate : BaseCollectable
     protected override void Collect()
     {
         base.Collect();
-        LabyrinthAudio.Singleton.PlayChocCollected();
         PlayerData.ChocolateCollected[number] = true;
         if (PlayerData.Group != 1) ChocolatesNavigator.Singleton.RefreshChocolateNav();
         if (PlayerData.TotalChocolatesCollected == 1) _tip.Show(string.Empty);

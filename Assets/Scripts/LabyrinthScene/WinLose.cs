@@ -14,6 +14,7 @@ public class WinLose : MonoBehaviour
     public static UnityAction win;
 
     private int group=>PlayerData.Group;
+    private int _chocolatesLeft => PlayerData.TotalChocolatesCollected - PlayerData.ChocolatesEaten;
 
     private void Start() 
     {
@@ -41,7 +42,7 @@ public class WinLose : MonoBehaviour
         if (group == 3)
         {
             if (health >= 99 && hasControls) Win();
-            if (chocolatesCount == 10 && health < 100 && hasControls) Lose();
+            if (PlayerData.TotalChocolatesCollected == 10 &&_chocolatesLeft==0 && health < 100 && hasControls) Lose();
         }
     }
     private void Win()
@@ -60,8 +61,8 @@ public class WinLose : MonoBehaviour
         resultTextImage.sprite = resTextSprite[res];
         bobrImage.sprite = bobrSprites[res];
 
+        if(PlayerMovement.HasControls) FirebaseManager.PushData();
         PlayerMovement.HasControls = false;
-        FirebaseManager.PushData();
         SavesManager.Clear();
     }
 

@@ -17,7 +17,7 @@ public class Tip : MonoBehaviour
         _tip.gameObject.SetActive(false);
     }
 
-    public void Show(string bonusText)
+    public void Show(string bonusText = "")
     {
         _tip.gameObject.SetActive(true);
         _tip.color = new Color(1,1,1,1);

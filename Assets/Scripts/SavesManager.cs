@@ -15,7 +15,8 @@ public class SavesManager : MonoBehaviour
             PlayerData.ChocolateCollected = GetData.GetBoolArray(10,"chocs.txt");
             ChocolatesNavigator.Singleton.RefreshChocolateNav();
             PlayerData.TrophiesCollected = GetData.GetBoolArray(4, "trophies.txt");
-            PlayerData.TimeSpentInArea = GetData.GetTime();
+            PlayerData.TimeSpentInArea = GetData.GetTime("time.txt", 4);
+            PlayerData.StageTime = GetData.GetTime("stageTime.txt", 3);
         }
     }
 
@@ -33,6 +34,7 @@ public class SavesManager : MonoBehaviour
             SaveData.SaveArray(PlayerData.ChocolateCollected,"chocs.txt");
             SaveData.SaveArray(PlayerData.TrophiesCollected, "trophies.txt");
             SaveData.SaveArray(PlayerData.TimeSpentInArea, "time.txt");
+            SaveData.SaveArray(PlayerData.StageTime, "stageTime.txt");
         }
         SaveData.SaveGroup();
         SaveData.SaveMainData();
@@ -44,10 +46,11 @@ public class SavesManager : MonoBehaviour
         string[] paths = new string[0];
 
         MyFunctions.AddToEnd(ref paths, origin + "/save.txt");
-        MyFunctions.AddToEnd(ref paths, origin + "/choc.txt");
+        MyFunctions.AddToEnd(ref paths, origin + "/chocs.txt");
         MyFunctions.AddToEnd(ref paths, origin + "/coords.txt");
         MyFunctions.AddToEnd(ref paths, origin + "/trophies.txt");
         MyFunctions.AddToEnd(ref paths, origin + "/time.txt");
+        MyFunctions.AddToEnd(ref paths, origin + "/stageTime.txt");
 
         foreach (string path in paths)
         {
