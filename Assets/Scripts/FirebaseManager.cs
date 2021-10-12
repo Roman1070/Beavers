@@ -113,7 +113,7 @@ public class Profile
         _timeRed = timeR;
         _timeYellow = timeY;
         _timeGreen = timeGreen;
-        _timeGallery = timeGallery;
+        _timeGallery = galleryFound? timeGallery:0;
         _totalTime = timeR + timeY + timeGallery + timeGallery;
         _completedDistance = completedDistance;
         _chocolatesCount = chocolatesCount;

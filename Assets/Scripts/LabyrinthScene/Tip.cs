@@ -7,6 +7,7 @@ public class Tip : MonoBehaviour
     [SerializeField] private Text _text;
     [SerializeField] private float _delay;
     [SerializeField] private float _disappearenceDuration;
+    [SerializeField] private bool _destroyInTheEnd;
 
     private string _defaultText;
     private float _t;
@@ -38,6 +39,7 @@ public class Tip : MonoBehaviour
                 if (_t == _disappearenceDuration)
                 {
                     _tip.gameObject.SetActive(false);
+                    if (_destroyInTheEnd) Destroy(gameObject);
                 }
             }
         }
